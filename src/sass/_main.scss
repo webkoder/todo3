@@ -1,0 +1,19 @@
+html, body{
+    padding:0px; margin:0px;
+}
+
+body{
+    background: $dark;
+    color: $light;
+}
+
+.wrapper{
+    margin:20px;
+    width: 90vw;
+    margin:0 auto;
+}
+
+h1{
+    font-size:18px;
+    font-weight: normal;
+}

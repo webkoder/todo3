@@ -1,0 +1,116 @@
+#inputitem{
+    border:1px solid $medium;
+    border-top:20px solid $medium;
+    padding:40px;
+    box-shadow: 10px 10px 1px 0 rgba(0,0,0,1);
+    position: fixed;
+    top:30%;
+    left:calc(100vw - 90%);
+    display: inline-block;
+    background-color: $dark;
+
+
+    input{
+        background: $medium;
+        padding:10px 20px;
+        border:1px solid $light;
+        border-right:none;
+        color: $light;
+        font-size:20px;
+        font-family: sans-serif;
+
+        &::placeholder{
+            color:rgb(172, 144, 177);
+            font-size:14px;
+            font-style: italic;
+        }
+
+        &:focus{
+            border: none;
+            box-shadow: none;
+            outline: 1px dashed $light;
+        }
+    }
+
+    #addbtn{
+        background: darken($medium, 20);
+        color: $light;
+        border:1px solid $light;
+        border-left:none;
+        padding:15px 25px 11px 25px;
+        font-size:14px;
+    }
+
+    .closebtn{
+        position: absolute;
+        top:-20px;
+        right:0px;
+        background-color: $light;
+        color: $dark;
+        font-size: 12px;
+        padding:2px 8px;
+        @include hoverbase;
+
+        &:hover{
+            background-color: lighten($light, 4);
+            @include hoverbase;
+        }
+    }
+}
+
+.showinput{
+    opacity: 1;
+    transform: translateX(0vw);
+    animation: 500ms slidein ease-out;
+}
+.hiddeninput{
+    opacity: .5;
+    transform: translateX(100vw);
+    animation: 500ms slideout ease-out;
+}
+
+@keyframes slidein {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    60% {
+        transform: translateX(-20px);
+    }
+
+    75% {
+        transform: translateX(20px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    90% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideout {
+    0% {
+        transform: translateX(0px);
+    }
+    
+    90% {
+        transform: translateX(100vw);
+    }
+}
+
+.backdrop{
+    position: fixed;
+    background-color: rgba($light, .6);
+    width:100vw;
+    height:100vh;
+    top:0px;
+    left:0px;
+    @include hoverbase;
+}

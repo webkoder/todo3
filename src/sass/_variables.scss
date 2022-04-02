@@ -1,0 +1,7 @@
+$dark: #2F195F;
+$medium: #7353BA;
+$light: #FAA6FF;
+
+@mixin hoverbase{
+    transition: 200ms all ease-in;
+}
