@@ -5,34 +5,43 @@ import { List } from './components/List'
 import { MenuBar } from './components/MenuBar'
 import { Item, Status } from './models/Item'
 
+
+const rand = () => {
+  return Math.random().toString(36).substr(2);
+};
+
+const token = ( ) => {
+  return rand() + rand();
+};
+
 function mock(){
   
-
+  let _c = 0;
   const _data = ['Criar Readme.md', 'Estilo da Lista', 'Estilo dos Itens',
     'Alteração de Status dos items', 'Titulo, icones e configuração da página',
     'Ações dos botões do menu', 'Seleção de tema', 'Integração com contrato']
       .map( _item => {
         let o = new Item();
         o.title = _item;
-        o.status = Status.ToDo;
+        o.status = _c <= 4 ? Status.Done : Status.ToDo;
+        o.token = token();
+        _c++;
         return o;
       });
     _data[0].status = Status.Doing;
     return _data;
-
 }
 
-
-
 function App() {
-  const [list, setList] = useState([  ])
+  const [list, setList] = useState([])
+  const [listDone, setListDone] = useState([])
   const [showInput, setShowInput] = useState(false);
   const [ init , setInit] = useState(false);
 
   useEffect(() => {
     if(!init){
-      // let _list = mock();
-      let _list = [];
+      let _list = mock();
+      // let _list = [];
       
       setList(_list);
 
@@ -57,6 +66,9 @@ function App() {
     setList( _v );
   }
 
+  const handleList = ( newList ) => {
+    setList( newList );
+  }
 
   return (
     <>
@@ -66,7 +78,7 @@ function App() {
           <h1>TO-DO list in blockchain</h1>
           <InputItem clickAdd={ handleClick } show={ showInput }
             clickClose={ _ => setShowInput( false ) } />
-          <List items={list} />
+          <List items={list} updateList={ handleList } />
         </header>
       </div>
     </>

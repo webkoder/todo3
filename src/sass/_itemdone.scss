@@ -1,0 +1,32 @@
+.doneitem{
+    width:250px;
+    height:55px;
+    border:1px solid $medium;
+    box-shadow: 5px 5px 1px 0 rgba(0,0,0,1);
+    background-color: $medium;
+    color: $light;
+    margin:15px;
+    display: flex;
+    // align-items: flex-end;
+    justify-content: space-between;
+    border-radius: 5px;
+    @include hoverbase;
+
+    &:hover .undoBtn{
+        opacity: 1;
+        background:rgba(0,0,0,.3);
+        @include hoverbase;
+    }
+
+    .title{
+        padding:10px;
+        font-size:12px;
+    }
+    
+    .undoBtn{
+        opacity: 0;
+        padding:15px 20px;
+        cursor: pointer;
+    }
+    
+}

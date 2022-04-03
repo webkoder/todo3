@@ -3,11 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTurnDown, faBolt, faSquareCheck, faClock, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Status } from '../models/Item';
 
-export const ListItem = ({item}) => {
+export const ListItem = ({item, changeStatus}) => {
     const[ changing, setChanging] = useState(false);
 
     useEffect(() => {
       }, []);
+
+      
+    const handleStatusChange = ( e ) => {
+        changeStatus( e, item.token )
+        setChanging(false)
+    }
 
     return (
         <div className="todoitem">
@@ -24,17 +30,17 @@ export const ListItem = ({item}) => {
                 </div>
 
                 <div className='statusSelector'>
-                        <div onClick={_ => setChanging(false)}
+                        <div onClick={_ => handleStatusChange( Status.ToDo )}
                             title='To Do'
                             className={ item.status == Status.ToDo ? 'selected' : 'option' }>
                         <FontAwesomeIcon icon={faClock} />
                         </div>
-                        <div onClick={_ => setChanging(false)}
+                        <div onClick={_ => handleStatusChange( Status.Doing )}
                             title='Doing'
                             className={ item.status == Status.Doing ? 'selected' : 'option' }>
                         <FontAwesomeIcon icon={faBolt} />
                         </div>
-                        <div onClick={_ => setChanging(false)}
+                        <div onClick={_ => handleStatusChange( Status.Done )}
                             title='Done'
                             className={ item.status == Status.Done ? 'selected' : 'option' }>
                         <FontAwesomeIcon icon={faSquareCheck} />
