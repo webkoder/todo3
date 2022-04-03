@@ -3,16 +3,39 @@ import './sass/index.scss'
 import { InputItem } from './components/InputItem'
 import { List } from './components/List'
 import { MenuBar } from './components/MenuBar'
+import { Item, Status } from './models/Item'
+
+function mock(){
+  
+
+  const _data = ['Criar Readme.md', 'Estilo da Lista', 'Estilo dos Itens',
+    'Alteração de Status dos items', 'Titulo, icones e configuração da página',
+    'Ações dos botões do menu', 'Seleção de tema', 'Integração com contrato']
+      .map( _item => {
+        let o = new Item();
+        o.title = _item;
+        o.status = Status.ToDo;
+        return o;
+      });
+    _data[0].status = Status.Doing;
+    return _data;
+
+}
 
 
 
 function App() {
-  const [list, setList] = useState([])
+  const [list, setList] = useState([  ])
   const [showInput, setShowInput] = useState(false);
   const [ init , setInit] = useState(false);
 
   useEffect(() => {
     if(!init){
+      // let _list = mock();
+      let _list = [];
+      
+      setList(_list);
+
       appendEvent();
       setInit( true )
     }
@@ -30,7 +53,7 @@ function App() {
 
   const handleClick = (e) => {
     let _v = [... list ];
-    _v.push( e );
+    _v.push( new Item(e) );
     setList( _v );
   }
 
@@ -41,7 +64,8 @@ function App() {
       <div className="wrapper">
         <header className="header">
           <h1>TO-DO list in blockchain</h1>
-          <InputItem clickAdd={ handleClick } show={showInput} clickClose={ _ => setShowInput( false ) } />
+          <InputItem clickAdd={ handleClick } show={ showInput }
+            clickClose={ _ => setShowInput( false ) } />
           <List items={list} />
         </header>
       </div>

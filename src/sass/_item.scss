@@ -1,0 +1,111 @@
+.todoitem{
+    width:250px;
+    height:100px;
+    border:1px solid $medium;
+    border-top:20px solid $medium;
+    box-shadow: 10px 10px 1px 0 rgba(0,0,0,1);
+    background-color: $dark;
+    margin:15px;
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-end;
+    justify-content: space-between;
+    
+    
+
+    .title{
+        background-color: none;
+        padding:10px;
+        font-size:12px;
+
+    }
+
+    .statuswrapper{
+        height: 41px;
+        border-top:1px solid $light;
+        overflow: hidden;
+    }
+
+    .statusopen{
+        margin-top:-40px;
+        @include hoverbase;
+    }
+
+    .statusclose{
+        margin-top:0px;
+        @include hoverbase;
+    }
+
+    .status, .statusSelector{
+        background-color: $medium;
+        
+        text-align: center;
+        height:20px;
+    }
+    
+    .status{
+        padding:10px;
+        cursor:pointer;
+        // animation: ani-status-open 1s;
+        // transform: translateY(-20px);
+
+        &:hover .statusicon{
+            opacity: 1;
+            margin-left: 20px;
+            transition: 200ms all;
+        }
+        
+        .statusicon{
+            opacity: 0;
+            margin-left: 0px;
+            transition: 200ms all;
+        }
+    }
+
+    .statusSelector{
+        display: flex;
+        height: 40px;
+        justify-content: center;
+
+        .option, .selected, .back{
+            cursor:pointer;
+            display: inline-block;
+        }
+
+        .back{
+            padding:10px 20px;
+            margin-left:20px;
+            @include hoverbase;
+            &:hover{
+                background-color: rgba(0,0,0,.5);
+            }
+        }
+        
+        .option{
+            padding:10px 20px;
+            border-bottom:3px solid rgba(0,0,0,.5);
+            @include hoverbase;
+            &:hover{
+                background-color: darken( $medium, 20);
+                border-bottom:3px solid rgba(0,0,0,.8);
+            }
+        }
+        .selected{
+            padding:10px 20px;
+            border-bottom:3px solid rgba(salmon,.5);
+            @include hoverbase;
+            &:hover{
+                background-color: darken( $medium, 5);
+            }
+        }
+    }
+}
+
+@keyframes ani-status-open{
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-40px);
+    }
+}
